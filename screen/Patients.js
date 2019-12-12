@@ -42,7 +42,8 @@ export default class Patient extends Component{
    constructor(props){
        super(props)
        this.state=({
-           patients:[]
+           patients:[],
+           loading: false
        })
    }
    componentDidMount=()=>{
@@ -77,7 +78,7 @@ export default class Patient extends Component{
             <View>
                 <FlatList
                 refreshing={this.state.loading}
-                onRefresh={()=>this}
+                onRefresh={()=>this.getPatients()}
                 keyExtractor={(p)=>p.id.toString()} 
                 data={this.state.patients}
                 renderItem={(p)=>{
